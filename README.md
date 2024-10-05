@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# React Table App - Versión 16
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto está construido en React 16 y tiene como objetivo consumir servicios de una API para mostrar datos en una tabla dinámica. Se utiliza Redux Toolkit para la gestión del estado global y se crean componentes reutilizables que interactúan con la API de manera eficiente.
 
-## Available Scripts
+## Características
 
-In the project directory, you can run:
+- **Gestión de Estado**: Se utiliza Redux Toolkit para el manejo del estado global de la aplicación.
+- **Componentización**: La aplicación consta de dos componentes principales (`TableC` y `Header`) que interactúan con la API y presentan los datos de manera dinámica.
+- **Llamadas a API Centralizadas**: Los endpoints de la API están gestionados a través de un archivo de constantes, facilitando su mantenimiento y configuración.
+- **React Hooks**: Uso de hooks (`useEffect`, `useMemo`, `useCallback`) para manejar las interacciones y renderizado eficiente de componentes.
 
-### `npm start`
+## Prerequisitos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Antes de iniciar el proyecto, asegúrate de tener las siguientes herramientas instaladas:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Node.js](https://nodejs.org/) (versión 14 o superior)
+- [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/) para la gestión de paquetes.
 
-### `npm test`
+## Instalación
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clonar el repositorio**:
 
-### `npm run build`
+   ```bash
+   git clone https://github.com/tu-usuario/tu-proyecto-react.git
+   cd tu-proyecto-react
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Instalar dependencias**: <br>
+Ejecuta el siguiente comando para instalar todas las dependencias necesarias:
+    ```bash
+    npm install
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Uso
+### Iniciar la Aplicación
+Para iniciar la aplicación en modo desarrollo, utiliza el siguiente comando:
 
-### `npm run eject`
+```bash
+npm start
+```
+La aplicación se ejecutará en `http://localhost:3000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Comandos de npm
+* `npm run dev:` Inicia el proyecto en modo de desarrollo.
+* `npm run build:` Construye el proyecto para producción.
+* `npm run test:` Ejecuta las pruebas unitarias del proyecto.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Estructura del Proyecto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+La estructura del proyecto se organiza de la siguiente manera:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```plaintext
+src/
+├── components/
+│   ├── Header/
+│   │   ├── Header.js
+│   │   └── style.css
+│   └── Table/
+│       ├── TableC.js
+│       └── style.css
+├── constants/
+│   └── index.js
+├── redux/
+│   ├── store.js
+│   └── tableSlice.js
+└── App.js
+```
 
-## Learn More
+### Descripción de Carpetas y Archivos
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **`components/`**: Contiene los componentes principales (`Header` y `TableC`) utilizados para la vista.
+- **`constants/`**: Define las constantes de la API (`FILES_LIST_ENDPOINT`, `FILES_DATA_ENDPOINT`).
+- **`redux/`**: Configura la gestión del estado global de la aplicación con Redux Toolkit.
+- **`App.js`**: Punto de entrada principal de la aplicación.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### Configuración de Endpoints
+Los endpoints de la API están centralizados en un archivo `constants/index.js` para facilitar su gestión y actualización. A continuación se muestra la configuración de los endpoints:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Archivo constants/index.js
 
-### Analyzing the Bundle Size
+```javascript
+// URL base para la API
+export const API_URL = 'http://localhost:4000';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+// Otros endpoints
+export const FILES_LIST_ENDPOINT = `${API_URL}/v1/files/list`;
+export const FILES_DATA_ENDPOINT = `${API_URL}/v1/files/data`;
+```
